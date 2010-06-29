@@ -1,0 +1,28 @@
+<h1>Editing resources</h1>
+
+<% form_for(@resources) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :file_extension %><br />
+    <%= f.text_field :file_extension %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @resources %> |
+<%= link_to 'Back', resources_path %>

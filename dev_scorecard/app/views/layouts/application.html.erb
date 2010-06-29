@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= controller.controller_name %>: <%= controller.action_name %></title>
+
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= javascript_include_tag 'prototype' %>
+  <%= javascript_include_tag 'effects' %>
+  <%= javascript_include_tag 'jquery-1.3.2.min' %>
+  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min' %>
+  <%= javascript_include_tag 'cmxforms' %>
+  <%= javascript_include_tag 'jquery.metadata' %>
+  <%= javascript_include_tag 'jquery.validate' %>
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'jquery', 'application' %>
+</head>
+<body>
+<br />
+<h1>Welcome to ScoreCard</h1>
+  Currently Logged in As: <%= current_user ? current_user.login : "Nobody" %>
+<br />
+<% if !current_user %>
+  <%= link_to "Register", new_account_path %> |
+  <%= link_to "Log In", new_user_session_path %> |
+<% else %>
+  <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+<% end %>
+<br />
+<br />
+<div class="errorExplanation"><p style="color: green"><%= flash[:notice] %></p><p style="color: red"><%= flash[:error] %></p></div>
+
+<%= yield  %>
+
+</body>
+</html>

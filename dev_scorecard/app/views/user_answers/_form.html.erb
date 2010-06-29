@@ -1,0 +1,44 @@
+<% 
+  @survey ||= survey
+  @case ||= kase ||= nil
+  @user_case_answers = !@case.nil? ? current_user.user_case_answers(@case) : [] 
+  @survey_questions = @survey.questions
+%>
+<div class="error"></div>
+<% form_for [@survey, @survey.user_answers.new], :class => "cmxform", :html => {:id => 'surveyForm'}, :method => "put" do |f| %>
+  <% if @case.nil? %>
+    Please name your survey (if you don't, that's OK too, it will just have an ugly name)
+    <%= text_field "case", "name" %>
+  <% end %>
+  <div class="Survey"><%= @survey.name %></div>
+  <%= f.error_messages %>
+  <% field_set_tag nil, :class => 'Survey' do %>
+    <div id="wizard">
+      <% @survey.questions.each do |q| %>
+        <div class="question">
+          <h3><a href="#"><%= q.content %></a></h3>
+          <div>
+            <% field_set_tag nil, :class => 'Question' do %>
+              <div class="answer">
+                <% q.answers.each do |a| %>
+                  <p>
+                    <%= radio_button_tag("answer[#{q.id}]", "#{a.id}", false, {:validate => "required:true", :checked => !@user_case_answers.select{|aa| aa.answer_id == a.id}.compact.empty?}) %><%= a.content %>
+                  </p>
+                <% end %>
+              </div>
+            <% end %>
+            <%=  submit_tag("previous", :type => 'button', :disabled => (@survey_questions.first == q ? true : false), :class => "previous") %>
+            <%=  submit_tag("next", :type => 'button', :disabled => (@survey_questions.last == q ? true : false), :class => "next") %>
+          </div>
+        </div>
+      <% end %>
+      <p>
+        <% if !@case.nil? %>
+          <%= hidden_field_tag :case_id, @case.id %>
+        <% end %>
+        <%= f.submit 'Submit' %>
+      </p>
+    </div>
+  <% end %>
+<% end %>
+</div>

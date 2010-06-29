@@ -1,0 +1,23 @@
+<p>
+  <strong>Name:</strong>
+  <%=h @survey.name %>
+</p>
+
+<ol>
+<% for question in @survey.questions.sort_by {|q| q.order.nil? ? 0 : q.order} %>
+  <li>
+    <%=h question.content %>
+    <ul>
+    <% question.answers.each do |answer| %>
+      <li><%=h answer.content %></li>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
+</ol>
+
+<p>
+  <%= link_to "Edit", edit_survey_path(@survey) %> |
+  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", surveys_path %>
+</p>

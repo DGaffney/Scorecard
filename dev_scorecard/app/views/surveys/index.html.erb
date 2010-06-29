@@ -1,0 +1,5 @@
+<h3>Select a survey:</h3>
+
+<% @surveys.each do |survey| %>
+<div class="Survey"><%=  link_to h(survey.name), new_survey_user_answer_path(survey) %></div>
+<% end %>

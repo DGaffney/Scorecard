@@ -1,0 +1,37 @@
+<h1><%= link_to "Case: #{kase.title}", case_url(kase)%></h1>
+
+<h2>Facts:</h2>
+<% if !kase.facts.nil? && !kase.facts.empty? %>
+  <%=h kase.facts %>
+<% else %>
+  The Case's facts have not yet been added.
+<% end %>
+
+<h2>Original work</h2>
+<% if !kase.original_resource.nil? && !kase.original_resource.id.nil? %>
+  <div class="source_file"><%= image_tag(kase.original_resource.public_filename(:thumb), :align => "left", :hspace => "10px", :vspace => "10px") %></div>
+<% else %>
+  No original work added yet
+<% end %>
+
+<h2>Derivative work</h2>
+<% if !kase.derivative_resource.nil? && !kase.derivative_resource.id.nil? %>
+  <div class="source_file"><%= image_tag(kase.derivative_resource.public_filename(:thumb), :align => "left", :hspace => "10px", :vspace => "10px") %></div>
+<% else %>
+  No Derivative work added yet
+<% end %>
+<% if admin? %>
+  <h3>This Case is currently using the <%= kase.survey.name %></h3>
+  <p>
+    <% if !kase.case_answers.empty? %>
+      A judgement has been entered for this case; the raw value of the judgement was <%= kase.raw_value %>. <%= link_to "Edit the judgement?", new_survey_case_answer_path(kase.id, kase.survey.id)%>
+    <% else %>
+      The judgements for this case have not been entered yet. <%= link_to "Enter them?", new_survey_case_answer_path(kase.id, kase.survey.id)%>
+    <% end %>
+  </p>
+  <b>(Originally uploaded by <%= kase.user.login %>)</b>
+
+  <p>
+    <%= link_to 'Edit', edit_case_path(kase) %> | <%= link_to 'Back', cases_path %>
+  </p>
+<% end %>

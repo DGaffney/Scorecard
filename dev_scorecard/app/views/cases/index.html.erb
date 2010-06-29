@@ -1,0 +1,9 @@
+<h1>Listing cases</h1>
+
+<% for @case in @cases %>
+  <%= render :partial => "case_show", :locals => {:kase => @case} %>
+<% end %>
+
+<% if admin? %>
+  <%= link_to 'New cases', new_case_path %>
+<% end %>

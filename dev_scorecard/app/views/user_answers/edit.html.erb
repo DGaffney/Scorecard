@@ -1,0 +1,27 @@
+<h1>Editing survey</h1>
+
+<%= render :partial => 'form' %>
+
+<%= link_to 'Show', @survey %> |
+<%= link_to 'View All', surveys_path %>
+
+<h1>Editing user_answer</h1>
+
+<% form_for(@user_answer) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :answer_id %><br />
+    <%= f.text_field :answer_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @user_answer %> |
+<%= link_to 'Back', user_answers_path %>

@@ -1,0 +1,26 @@
+<h1>Listing resources</h1>
+
+<table>
+  <tr>
+    <th>File extension</th>
+    <th>Location</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+
+<% @resources.each do |resources| %>
+  <tr>
+    <td><%=h resources.file_extension %></td>
+    <td><%=h resources.location %></td>
+    <td><%=h resources.title %></td>
+    <td><%=h resources.description %></td>
+    <td><%= link_to 'Show', resources %></td>
+    <td><%= link_to 'Edit', edit_resources_path(resources) %></td>
+    <td><%= link_to 'Destroy', resources, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New resources', new_resources_path %>

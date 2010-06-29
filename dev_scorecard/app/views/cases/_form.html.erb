@@ -1,0 +1,52 @@
+<% @case.build_original_resource if @case.original_resource.nil? %>
+<% @case.build_derivative_resource if @case.derivative_resource.nil? %>
+<% form_for(@case, :html => { :multipart => true}) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :facts %><br />
+    <%= f.text_area :facts %>
+  </p>
+  <p>
+    Which survey is used with this case?<br />
+    <%= f.collection_select :survey_id, Survey.all, :id, :name %>
+  </p>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <div id="originalResourceFields" >
+    
+    <% if !@case.original_resource.id.nil? %>
+      <h2>Replace original work</h2>
+      <div class="source_file"><%= image_tag(@case.original_resource.public_filename(:thumb), :align => "left", :hspace => "10px", :vspace => "10px") %></div>
+    <% else %>
+      <h2>Add original work</h2>
+    <% end %>
+    <div class="image_upload">
+  	<% f.fields_for :original_resource do |ff| -%>
+  	  <%= ff.hidden_field :user_id, :value => current_user.id %>
+  	  <%= ff.file_field :uploaded_data  %></p>
+  	<% end -%>
+  	</div>
+  </div>
+
+  <div id="derivativeResourceFields">
+    <% if !@case.derivative_resource.id.nil? %>
+      <h2>Replace derivative work</h2>
+      <div class="source_file"><%= image_tag(@case.derivative_resource.public_filename(:thumb), :align => "left", :hspace => "10px", :vspace => "10px") %></div>
+    <% else %>
+      <h2>Add derivative work</h2>
+    <% end %>
+    <div class="image_upload">
+  	<% f.fields_for :derivative_resource do |ff| -%>
+  	  <%= ff.hidden_field :user_id, :value => current_user.id %>
+  	  <%= ff.file_field :uploaded_data  %></p>
+  	<% end -%>
+  	</div>
+  </div>
+
+  <%= f.submit 'Create' %>
+<% end %>

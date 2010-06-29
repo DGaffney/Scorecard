@@ -1,0 +1,24 @@
+<h1>Listing case_answers</h1>
+
+<table>
+  <tr>
+    <th>Case</th>
+    <th>Answer</th>
+    <th>Survey</th>
+  </tr>
+
+<% @case_answers.each do |case_answers| %>
+  <tr>
+    <td><%=h case_answers.case_id %></td>
+    <td><%=h case_answers.answer_id %></td>
+    <td><%=h case_answers.survey_id %></td>
+    <td><%= link_to 'Show', case_answers %></td>
+    <td><%= link_to 'Edit', edit_case_answers_path(case_answers) %></td>
+    <td><%= link_to 'Destroy', case_answers, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New case_answers', new_case_answers_path %>

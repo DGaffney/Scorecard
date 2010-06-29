@@ -1,0 +1,8 @@
+<div class="User">
+  <p><strong><%= user.login %></strong></p>
+  <p>
+    Role: <%= user.role %> <% if !user.anonymous %>(<%= link_to "Promote", user_promote_path(user.id) %>)<% end %><br />
+    Last logged in about <%= distance_of_time_in_words(user.last_login_at, Time.now) %> ago<br />
+    User joined about  <%= distance_of_time_in_words(user.created_at, Time.now) %> ago<br />
+  </p>
+</div>

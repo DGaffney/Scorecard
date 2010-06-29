@@ -1,0 +1,11 @@
+
+   <div class="Survey"><%= @survey.name %></div>
+   <% @user_answers.each do |user_answer| %>
+    <div class="QuestionHeader">
+      <p><b><%= user_answer.answer.question.content %></b></p>
+    </div>
+    <div class="answer">
+      <p><%= user_answer.answer.content %></p>
+    </div>
+    <%  end %>
+

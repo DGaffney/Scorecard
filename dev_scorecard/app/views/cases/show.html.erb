@@ -1,0 +1,12 @@
+<% kase ||= @case %>
+<%= render :partial => "case_show", :locals => {:kase => kase}%>
+<% if !current_user.nil? && current_user.finished_survey?(kase.survey, kase) %>
+  You already finished this survey. Would you like to <%=link_to_function "edit your answers?", visual_effect(:toggle_appear, "surveyFormWrapper", :duration => 0.5) %>
+  <div id="surveyFormWrapper" style="display:none">
+    <%= render :partial => "/user_answers/form", :locals => {:survey => kase.survey}%>
+  </div>
+<% else %>
+  <div id="surveyFormWrapper">
+    <%= render :partial => "/user_answers/form", :locals => {:survey => kase.survey}%>  
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<p>
+  <b>File extension:</b>
+  <%=h @resources.file_extension %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @resources.location %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @resources.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @resources.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_resources_path(@resources) %> |
+<%= link_to 'Back', resources_path %>

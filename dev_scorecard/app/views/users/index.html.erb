@@ -1,0 +1,9 @@
+<h1>Listing users</h1>
+<% for user in @listed_users %>
+  <%= render "user", :user => user %>
+<% end %>
+
+<h1>Anonymous Users</h1>
+<% for user in @anonymous_users %>
+  <%= render "user", :user => user %>
+<% end %>

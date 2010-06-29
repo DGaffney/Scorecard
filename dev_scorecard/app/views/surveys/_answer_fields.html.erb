@@ -1,0 +1,10 @@
+<div class="fields">
+  <p>
+    <%= f.label :content, "Answer" %>
+    <%= f.text_field :content %>
+    <%= f.label :value, "Weighted Value" %>
+    <%= f.text_field :value %>
+    <%= f.hidden_field :_delete %>
+    <%= link_to_remove_fields "remove", f %>
+  </p>
+</div>

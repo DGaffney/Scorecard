@@ -1,0 +1,10 @@
+<% if !current_user.nil? %>
+Thanks for logging in.
+<% else %>
+You should log in.
+<% end %>
+<h1>What do you want to do?</h1>
+
+
+<h2><%= link_to "Take the fair use Survey", new_survey_user_answer_path(Survey.first) %></h2>
+<h2><%= link_to "View the fair use Cases", cases_path %></h2>
